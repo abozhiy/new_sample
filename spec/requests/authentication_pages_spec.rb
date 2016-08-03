@@ -19,11 +19,11 @@ describe "Authentication" do
   		before { click_button "Sign in" }
 
   		it { should have_title('Sign in') }
-  		it { should have_error_message('Invalid') }
+  		it { should have_error_message('Неверная') }
 
       describe "after visiting another page" do
         before { click_link "Home" }
-        it { should_not have_selector('div.alert.alert-error') }
+        it { should_not have_error_message('Неверная') }
       end
   	end
 
