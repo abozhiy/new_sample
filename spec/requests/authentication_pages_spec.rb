@@ -7,7 +7,7 @@ describe "Authentication" do
   describe "signin pages" do
     before { visit signin_path }
 
-    it { should have_content('Sign in') }
+    it { should have_content('Авторизация пользователя:') }
     it { should have_title('Sign in') }
   end
 
@@ -16,13 +16,13 @@ describe "Authentication" do
   	before { visit signin_path }
 
   	describe "with invalid information" do
-  		before { click_button "Sign in" }
+  		before { click_button "Войти" }
 
   		it { should have_title('Sign in') }
   		it { should have_error_message('Неверная') }
 
       describe "after visiting another page" do
-        before { click_link "Home" }
+        before { click_link "На главную" }
         it { should_not have_error_message('Неверная') }
       end
   	end
@@ -32,15 +32,15 @@ describe "Authentication" do
   		before { valid_signin(user) }
 
   		it { should have_title(user.name) }
-      it { should have_link('Users', href: users_path) }
-  		it { should have_link('Profile', href: user_path(user)) }
-      it { should have_link('Settings', href: edit_user_path(user)) }
-  		it { should have_link('Sign out', href: signout_path) }
-  		it { should_not have_link('Sign in', href: signin_path) }
+      it { should have_link("Юзеры", href: users_path) }
+  		it { should have_link("Моя страница", href: user_path(user)) }
+      it { should have_link("Настройки", href: edit_user_path(user)) }
+  		it { should have_link("Выйти", href: signout_path) }
+  		it { should_not have_link("Войти", href: signin_path) }
 
       describe "followed by signout" do
-        before { click_link "Sign out" }
-        it { should have_link('Sign in') }
+        before { click_link "Выйти" }
+        it { should have_link('Войти') }
       end
   	end
   end
@@ -53,9 +53,9 @@ describe "Authentication" do
       describe "when attemping to visit a protected page" do
         before do
           visit edit_user_path(user)
-          fill_in "Email", with: user.email
-          fill_in "Password", with: user.password
-          click_button "Sign in"
+          fill_in "Адрес эл. почты:", with: user.email
+          fill_in "Пароль:", with: user.password
+          click_button "Войти"
         end
 
         describe "after signing in" do

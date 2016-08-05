@@ -11,7 +11,7 @@ describe "Static pages" do
 	
 	describe "Home page" do
 		before { visit root_path }
-        let(:heading) { 'New Sample App' }
+        let(:heading) { 'Приветствую, друзья!' }
         let(:page_title) { '' }
 
 		it_should_behave_like "all static pages"
@@ -20,7 +20,7 @@ describe "Static pages" do
 
     describe "Help page" do
     	before { visit help_path }
-        let(:heading) { 'Help' }
+        let(:heading) { 'Помощь:' }
         let(:page_title) { '' }
     	
         it_should_behave_like "all static pages"
@@ -44,14 +44,14 @@ describe "Static pages" do
 
     it "should have the right links on the layout" do
         visit root_path
-        click_link "About"
+        click_link "About Us"
         expect(page).to have_title(full_title('About Us :)'))
-        click_link "Help"
+        click_link "Помощь"
         expect(page).to have_title(full_title('Help'))
         click_link "Contact"
         expect(page).to have_title(full_title('Contact'))
-        click_link "Home"
-        click_link "Sign up now!"
+        click_link "На главную"
+        click_link "Создать аккаунт!"
         expect(page).to have_title(full_title('Sign up'))
         
     end
